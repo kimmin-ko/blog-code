@@ -16,6 +16,7 @@ import java.util.List;
 public class DepartmentSimpleApiController {
 
     private final DepartmentRepository departmentRepository;
+    private final DepartmentQueryRepository departmentQueryRepository;
 
     /**
      * X To One (X대일)

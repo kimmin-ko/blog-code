@@ -1,6 +1,14 @@
 spring:
   datasource:
     url: jdbc:h2:tcp://localhost/~/test
-    username: sa
+    username: test
     password:
     driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+#        default_batch_fetch_size: 500

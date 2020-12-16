@@ -1,11 +1,14 @@
 package com.mins.fetchjoin.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Employee {
 
     @Id
@@ -18,4 +21,8 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
 
+    public Employee(String name, Department department) {
+        this.name = name;
+        this.department = department;
+    }
 }

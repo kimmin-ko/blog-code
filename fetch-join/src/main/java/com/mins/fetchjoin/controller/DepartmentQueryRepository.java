@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 
 @Repository
 @RequiredArgsConstructor
-public class DepartmentQueryRepository implements DepartmentRepositorySupport {
+public class DepartmentQueryRepository {
 
     private final EntityManager em;
 
