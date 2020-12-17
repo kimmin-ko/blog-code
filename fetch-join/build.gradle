@@ -16,6 +16,7 @@ configurations {
 
 ext {
     p6spyVersion = '1.5.6'
+    randomBeansVersion = '3.9.0'
 }
 
 repositories {
@@ -29,6 +30,7 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             "com.github.gavlyukovskiy:p6spy-spring-boot-starter:${p6spyVersion}",
     )
+    compile "io.github.benas:random-beans-randomizers:${randomBeansVersion}"
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
