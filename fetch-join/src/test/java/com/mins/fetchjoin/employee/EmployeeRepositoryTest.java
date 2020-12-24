@@ -37,43 +37,40 @@ class EmployeeRepositoryTest {
         List<Department> findDepartments = departmentRepository.findAll();
 
         // 직원 50개 저장
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; i++)
             employeeRepository.save(new Employee("직원" + (i + 1), findDepartments.get(i % 10)));
-        }
 
         em.flush();
         em.clear();
     }
 
     @Test
-    @DisplayName("X To One 관계에서 지연 로딩으로 조회하기")
-    void v1() {
+    void department_name_조회() {
         List<Employee> findEmployees = employeeRepository.findAll();
 
-        // 조회한 Employee의 Department는 Proxy 객체로 저장됩니다.
-        System.out.println("getDepartment().getClass() = " + findEmployees.get(0).getDepartment().getClass());
-
         for (Employee findEmployee : findEmployees) {
-            // Department Proxy 객체 생성
-            System.out.println("findEmployee = " + findEmployee.getName());
-
-            // id를 조회할 땐 지연로딩이 발생하지 않음
-            System.out.println("findEmployee.getDepartment().getId() = " + findEmployee.getDepartment().getId());
-
-            // 지연 로딩 발생 !!!!!
-            System.out.println("findEmployee.getDepartment().getName() = " + findEmployee.getDepartment().getName());
+            System.out.println("employee = " + findEmployee.getName());
+            System.out.println("department name = " + findEmployee.getDepartment().getName());
         }
     }
 
     @Test
-    @DisplayName("X To One 관계에서 페치 조인으로 조회하기")
-    void v2() {
-        // 페치 조인으로 한번에 가져오기
+    void department_id_조회() {
+        List<Employee> findEmployees = employeeRepository.findAll();
+
+        for (Employee findEmployee : findEmployees) {
+            System.out.println("employee = " + findEmployee.getName());
+            System.out.println("department id = " + findEmployee.getDepartment().getId());
+        }
+    }
+
+    @Test
+    void department_naem_조회_fetch_join() {
         List<Employee> findEmployees = employeeRepository.findAllWithDepartment();
 
         for (Employee findEmployee : findEmployees) {
-            System.out.println("findEmployee = " + findEmployee.getName());
-            System.out.println("findEmployee.getDepartment().getName() = " + findEmployee.getDepartment().getName());
+            System.out.println("employee = " + findEmployee.getName());
+            System.out.println("department name = " + findEmployee.getDepartment().getName());
         }
     }
 
