@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface EmployeeRepositoryCustom {
 
-    List<Employee> findAllWithDepartment();
-
 }

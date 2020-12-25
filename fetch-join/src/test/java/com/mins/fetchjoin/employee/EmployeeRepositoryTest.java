@@ -3,6 +3,7 @@ package com.mins.fetchjoin.employee;
 import com.mins.fetchjoin.department.DepartmentRepository;
 import com.mins.fetchjoin.entity.Department;
 import com.mins.fetchjoin.entity.Employee;
+import com.p6spy.engine.spy.appender.CustomLineFormat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,7 @@ class EmployeeRepositoryTest {
         List<Department> findDepartments = departmentRepository.findAll();
 
         // 직원 50개 저장
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 20; i++)
             employeeRepository.save(new Employee("직원" + (i + 1), findDepartments.get(i % 10)));
 
         em.flush();
@@ -65,7 +66,7 @@ class EmployeeRepositoryTest {
     }
 
     @Test
-    void department_naem_조회_fetch_join() {
+    void department_name_조회_fetch_join() {
         List<Employee> findEmployees = employeeRepository.findAllWithDepartment();
 
         for (Employee findEmployee : findEmployees) {
